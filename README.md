@@ -1,2 +1,4 @@
 # godot-plugin-toggler
-UI panel for Godot 4 editor allowing to easily enable / disable / restart plugins
+One click enabling / disabling / restarting plugins.
+
+Meant as an aid in plugin development, saving a few clicks and frustration when it is necessary to repeatedly disable an enable a plugin for development purposes.
