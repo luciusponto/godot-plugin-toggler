@@ -48,10 +48,8 @@ func _enter_tree():
 	EditorInterface.get_resource_filesystem().filesystem_changed.connect(_on_filesystem_changed)
 	
 	add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_BL, dock)
-	set_process(true)
 
 func _exit_tree():
-	set_process(false)
 	if is_instance_valid(dock):
 		remove_control_from_docks(dock)
 		dock.queue_free()
@@ -62,6 +60,7 @@ func _process(_delta):
 		_is_dirty = false
 		_next_update_time_ms = Time.get_ticks_msec() + REFRESH_TIMEOUT_MSEC
 		_refresh_plugin_list()
+		set_process(false)
 
 func _get_default_target_plugin():
 	var editor_settings = EditorInterface.get_editor_settings()
@@ -81,6 +80,7 @@ func _has_plugin_list_changed(new_plugin_list: Array[String]):
 	
 func _on_filesystem_changed():
 	_is_dirty = true
+	set_process(true)
 		
 func _get_default_selection_index():
 	if _plugin_list.size() == 0:
