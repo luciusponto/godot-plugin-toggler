@@ -129,5 +129,6 @@ func _on_toggle_pressed():
 	EditorInterface.set_plugin_enabled(_currently_selected_plugin, not is_enabled)
 	
 func _on_restart_pressed():
-	EditorInterface.set_plugin_enabled(_currently_selected_plugin, false)
+	if EditorInterface.is_plugin_enabled(_currently_selected_plugin):
+		EditorInterface.set_plugin_enabled(_currently_selected_plugin, false)
 	EditorInterface.set_plugin_enabled.call_deferred(_currently_selected_plugin, true)
